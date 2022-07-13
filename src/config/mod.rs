@@ -408,7 +408,7 @@ impl Config {
 
     pub(crate) fn get_metadata(&self) -> Ref<Option<Metadata>> {
         if self.metadata.borrow().is_none() {
-            match MetadataCommand::new().manifest_path(&self.manifest).exec() {
+            match MetadataCommand::new().manifest_path(&self.manifest).other_options(["--locked".to_string()]).exec() {
                 Ok(meta) => {
                     self.metadata.replace(Some(meta));
                 }
