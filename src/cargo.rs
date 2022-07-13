@@ -218,6 +218,7 @@ pub fn get_tests(config: &Config) -> Result<Vec<TestBinary>, RunError> {
     let metadata = MetadataCommand::new()
         .manifest_path(manifest)
         .features(CargoOpt::AllFeatures)
+        .other_options(["--locked".to_string()])
         .exec()
         .map_err(|e| RunError::Cargo(e.to_string()))?;
 
